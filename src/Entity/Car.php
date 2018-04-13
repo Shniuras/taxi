@@ -38,12 +38,13 @@ class Car
     private $type;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="Car")
+     * @ORM\OneToMany(targetEntity="App\Entity\Trip", mappedBy="car")
      */
     private $trips;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Driver")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Driver", inversedBy="cars")
+     * @ORM\JoinTable(name="car_driver")
      */
     private $driver;
 
@@ -94,5 +95,29 @@ class Car
     public function getTrips()
     {
         return $this->trips;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDriver()
+    {
+        return $this->driver;
+    }
+
+    public function addDriver(Driver $driver)
+    {
+        if($this->driver->contains($driver)){
+            return;
+        }
+        $this->driver[] = $driver;
+    }
+
+    public function removeDriver(Driver $driver)
+    {
+        if(! $this->driver->contains($driver)){
+            return;
+        }
+        $this->driver->removeElement($driver);
     }
 }

@@ -38,7 +38,7 @@ class Driver
     private $age;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Car")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Car" mappedBy="Driver" mappedBy="driver")
      *
      */
     private $cars;
@@ -89,17 +89,29 @@ class Driver
         return $this;
     }
 
-    /**
-     * @return Car[]
-     */
     public function getCars()
     {
         return $this->cars;
     }
 
-    /**
-     * @return Trip[]
-     */
+    public function addCar(Car $car)
+    {
+        if($this->cars->contains($car)){
+            return;
+        }
+            $car->addDriver($this);
+            $this->cars[] = $car;
+    }
+
+    public function removeCar(Car $car)
+    {
+        if(! $this->cars->contains($car)){
+            return;
+        }
+        $car->removeDriver($this);
+        $this->cars->removeElement($car);
+    }
+
     public function getTrips()
     {
         return $this->trips;
