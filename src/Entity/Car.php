@@ -12,7 +12,7 @@ class Car
 {
     public function __construct()
     {
-        $this->driver = new ArrayCollection();
+        $this->drivers = new ArrayCollection();
     }
 
     /**
@@ -46,7 +46,7 @@ class Car
      * @ORM\ManyToMany(targetEntity="App\Entity\Driver", inversedBy="cars")
      * @ORM\JoinTable(name="car_driver")
      */
-    private $driver;
+    public $drivers;
 
     public function getId()
     {
@@ -102,22 +102,22 @@ class Car
      */
     public function getDriver()
     {
-        return $this->driver;
+        return $this->drivers;
     }
 
     public function addDriver(Driver $driver)
     {
-        if($this->driver->contains($driver)){
+        if($this->drivers->contains($driver)){
             return;
         }
-        $this->driver[] = $driver;
+        $this->drivers[] = $driver;
     }
 
     public function removeDriver(Driver $driver)
     {
-        if(! $this->driver->contains($driver)){
+        if(! $this->drivers->contains($driver)){
             return;
         }
-        $this->driver->removeElement($driver);
+        $this->drivers->removeElement($driver);
     }
 }

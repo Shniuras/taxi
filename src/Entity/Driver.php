@@ -38,7 +38,7 @@ class Driver
     private $age;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Car" mappedBy="Driver" mappedBy="driver")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Car", mappedBy="drivers")
      *
      */
     private $cars;
@@ -116,4 +116,5 @@ class Driver
     {
         return $this->trips;
     }
+
 }

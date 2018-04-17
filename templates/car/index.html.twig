@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+            <tr>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Drivers</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.make }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.type }}</td>
+                {% for driver in car.drivers %}
+                <td>{{ driver.name }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

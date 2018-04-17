@@ -1,0 +1,47 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+      Symfony\Component\Security\Core\User\User: bcrypt
+      App\Entity\User: bcrypt
+    providers:
+        ssd_atmintine:
+          entity:
+            class: App\Entity\User
+            property: username
+        in_memory:
+            memory:
+              users:
+                admin:
+                  password: $2y$13$0nrGVYyhGON3Dc5mR4FQw.rpaMRKjalL/Tpp3mhrcAXlvoujb19jy
+                  roles: 'ROLE_ADMIN'
+                user:
+                  password: $2y$13$V6yoLb8Dhza/.y6mlkXeguUHdi7G9Hlykovk6wZiw63gygtejOw1u
+                  roles: 'ROLE_USER'
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            provider: ssd_atmintine
+            form_login:
+              login_path: login
+              check_path: login
+            logout:
+              path: /logout
+              target: /simple
+            # http_basic: ~
+
+            # activate different ways to authenticate
+
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        # - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/profile, roles: ROLE_USER }

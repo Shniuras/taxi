@@ -53,8 +53,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/profiler-pack" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/property-access" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/routing" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-core" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-csrf" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/security-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/stopwatch" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/translation" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/twig-bridge" />
@@ -69,6 +69,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="my-project" />
   </component>
 </module>
