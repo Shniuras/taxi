@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Trips</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            {% for client in clients %}
+            <th>{{ client.name }}</th>
+            <th>{{ client.gender }}</th>
+            <th>{{ client.trip_id }}</th>
+            {% endfor %}
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}
