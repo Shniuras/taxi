@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <th>Length</th>
+            <th>Duration</th>
+            <th>Cost</th>
+            <th>Car</th>
+            <th>Driver</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for trip in trips %}
+            <tr>
+                <td>{{ trip.length }}</td>
+                <td>{{ trip.duration }}</td>
+                <td>{{ trip.cost }}</td>
+                    <td>{{ trip.car.make }}</td>
+                    <td>{{ trip.driver.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
