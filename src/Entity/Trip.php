@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Car;
+use App\Entity\Driver;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,7 @@ class Trip
      * @ORM\OneToMany(targetEntity="App\Entity\Clients", mappedBy="trips")
      */
     private $client;
+
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Car")
      * @ORM\JoinColumn(nullable=false)
@@ -111,5 +114,21 @@ class Trip
     public function setDriver($driver): void
     {
         $this->driver = $driver;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCar()
+    {
+        return $this->car;
+    }
+
+    /**
+     * @param mixed $car
+     */
+    public function setCar($car): void
+    {
+        $this->car = $car;
     }
 }
