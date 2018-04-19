@@ -6,6 +6,7 @@ use App\Entity\FileStorage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -64,4 +65,37 @@ class SimpleController extends Controller
     {
         return $this->render('simple/index.html.twig');
     }
+
+    /**
+     * @Route("/testas", methods="POST")
+     */
+    public function somePost(Request $request)
+    {
+        return new JsonResponse([
+            'username' => $request->get('username'),
+            'password' => $request->get('password')
+        ]);
+    }
+
+    /**
+     * @Route("/github/", name="github-api")
+     */
+    public function guzzle()
+    {
+        $client = new \GuzzleHttp\Client();
+//        $request = $client->request('GET', 'http://api.github.com/users/shniuras');
+        $request = $client->request('POST', 'http://taxi.io/testas', [
+           'query' => [
+               'username'=> 'Shniuras',
+                'password' => 'lopas'
+           ]
+        ]);
+        $body = $request->getBody();
+        $body = json_decode($body, true);
+        echo '<pre>';
+        var_dump($body);
+        echo '</pre>';
+        exit;
+    }
+
 }
